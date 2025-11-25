@@ -29,8 +29,41 @@ STEP-7: The junction character where these two meet forms the cipher character.
 STEP-8: Repeat the above steps to generate the entire cipher text.
 
 
-## PROGRAM
+## PROGRAM:
+```
+message = input("Enter the message: ").upper()
+key = input("Enter the key: ").upper()
+cipher_text = ""
+key_index = 0
 
-## OUTPUT
+for char in message:
+    if char.isalpha():
+        shift = ord(key[key_index]) - 65
+        new_char = chr((ord(char) - 65 + shift) % 26 + 65)
+        cipher_text += new_char
+        key_index = (key_index + 1) % len(key)
+    else:
+        cipher_text += char
 
-## RESULT
+print("Encrypted Text :", cipher_text)
+
+plain_text = ""
+key_index = 0
+
+for char in cipher_text:
+    if char.isalpha():
+        shift = ord(key[key_index]) - 65
+        new_char = chr((ord(char) - 65 - shift + 26) % 26 + 65)
+        plain_text += new_char
+        key_index = (key_index + 1) % len(key)
+    else:
+        plain_text += char
+
+print("Decrypted Text :", plain_text)
+```
+## OUTPUT:
+<img width="350" height="97" alt="image" src="https://github.com/user-attachments/assets/fc394f66-1d04-45d4-a9e5-35143799f372" />
+
+
+## RESULT:
+Thus the implementation of vigenere cipher had been executed successfully.
